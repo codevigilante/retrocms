@@ -1,0 +1,61 @@
+﻿@inject HttpClient Http 
+@inject Services.AppData Config 
+
+<header class="navbar mb-4">
+    @if (Settings == null)
+    {
+        <section class="navbar-section">
+            <span class="label label-primary">load...</span>
+        </section>
+    }
+    else
+    {
+        <section class="navbar-section">
+            <a href="..." class="navbar-brand mr-2">@Settings.Site.Brand</a>
+        </section>
+
+        @if (topMenu != null)
+        {
+            <section class="navbar-section">
+                @for(int i = 0; i < topMenu.Items.Length - 1; ++i)
+                {
+                    <a href="@topMenu.Items[i].Href">@topMenu.Items[i].Label</a>
+                }
+                <a class="btn btn-primary" href="@topMenu.Items.Last().Href">@topMenu.Items.Last().Label</a>
+            </section>
+        }
+    }
+
+</header>
+
+@code {
+    private Model.Settings Settings = null;
+    private Menu topMenu = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        try
+        {
+            Settings = await Http.GetFromJsonAsync<Settings>(Config.SettingsPath);
+
+            topMenu = Settings.GetMenuByLocation("top");
+        }
+        catch (Exception ex)
+        {
+            Settings = new Settings()
+            {
+                Site = new Site()
+                {
+                    Brand = "ERROR",
+                    Tagline = "there's an error"
+                }
+            };
+
+            Console.WriteLine($"EXCEPTION fetching settings Json. There might be a problem with your site.");
+
+            // need to redirect to an error page
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "Site": {
+    "Brand": "RETROcms",
+    "Tagline": "a .NET blazor static cms",
+    "LogoPath": ""
+  },
+  "Menus": [
+    {
+      "Name": "primary",
+      "Location": "top",
+      "Items": [
+        {
+          "Label": "Action",
+          "Href": "#"
+        }
+      ]
+    }
+  ]
+}
