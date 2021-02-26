@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavMngr
+@inject Services.AppData AppData
+
+<div class="container grid-sm">
+    <NavMenu />
+    <section class="section">
+        @Body
+    </section>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        AppData.IsLocalDev = NavMngr.BaseUri.Contains("localhost") || NavMngr.BaseUri.Contains("127.0.0.1");
+
+        if (AppData.IsLocalDev)
+        {
+        }
+        else
+        {
+        }
+    }
+}

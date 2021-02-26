@@ -1,0 +1,38 @@
+﻿.navbar-section .navbar-brand {
+    font-family: 'Squada One', cursive;
+    padding: 0 3px 0 3px;
+    border: 2px solid red;
+}
+
+.mb-4
+{
+    margin-bottom:3.5em;
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 99;
+}
+
+#status {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-image: url(../img/rings.svg);
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: -100px 0 0 -100px;
+}
+
+#blazor-error-ui
+{
+    display:none;
+}
